@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class UnityOfMeasure {
+public class UnitOfMeasure {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +14,22 @@ public class UnityOfMeasure {
 
 	private String description;
 
-	public String getUom() {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
 		return description;
 	}
 
-	public void setUom(String uom) {
-		this.description = uom;
+	public void setDescription(String description) {
+		this.description = description;
 	}
+
+	
 
 }

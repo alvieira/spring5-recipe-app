@@ -24,7 +24,7 @@ public class Ingredient {
 	private Recipe recipe;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	private UnityOfMeasure unityOfMeasure;
+	private UnitOfMeasure unityOfMeasure;
 
 	public String getDescription() {
 		return description;
@@ -50,11 +50,11 @@ public class Ingredient {
 		this.recipe = recipe;
 	}
 
-	public UnityOfMeasure getUnityOfMeasure() {
+	public UnitOfMeasure getUnityOfMeasure() {
 		return unityOfMeasure;
 	}
 
-	public void setUnityOfMeasure(UnityOfMeasure unityOfMeasure) {
+	public void setUnityOfMeasure(UnitOfMeasure unityOfMeasure) {
 		this.unityOfMeasure = unityOfMeasure;
 	}
 
