@@ -1,36 +1,27 @@
 package com.aev.springframework.controller;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.aev.springframework.domain.Category;
-import com.aev.springframework.domain.UnitOfMeasure;
-import com.aev.springframework.repositories.CategoryRepository;
-import com.aev.springframework.repositories.UnitOfMeasureRepository;
+import com.aev.springframework.services.RecipeService;
 
 @Controller
 public class IndexController {
 
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
+	private final RecipeService recipeService;
 
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
-    }
+	public IndexController(RecipeService recipeService) {
+		super();
+		this.recipeService = recipeService;
+	}
 
-    @RequestMapping({"", "/", "/index"})
-    public String getIndexPage(){
+	@RequestMapping({ "", "/", "/index" })
+	public String getIndexPage(Model model) {
 
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
-        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
+		model.addAttribute("recipes", recipeService.getRecipes());
 
-        System.out.println("Cat Id is: " + categoryOptional.get().getId());
-        System.out.println("UOM ID is: " + unitOfMeasureOptional.get().getId());
-
-        return "index";
-    }
+		return "index";
+	}
 
 }
